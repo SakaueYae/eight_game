@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ゲームタイトル画面</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="main-title-screen">
+        <h1>8番カフェ</h1>
+        <h2>8th cafe</h2>
+        <p id="start-text"><b>クリックしてスタート<br/> Click to start</b></p>
+    </div>
+    <div id="level-selection-screen" style="display: none;">
+        <h1>レベル選択</h1>
+        <h2>select level</h2>
+        <div id="level-selection">
+            <button class="level-button" data-level="1">Level 1</button>
+            <button class="level-button" data-level="2">Level 2</button>
+            <button class="level-button" data-level="3">Level 3</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
