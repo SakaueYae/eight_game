@@ -11,7 +11,14 @@ $(document).ready(function() {
     });
 
     $('.Description').click(function(){
-        alert("ゲームの説明が選択されました");
+        $('#level-selection-screen').hide();
+        $('#description-screen').show();
         // 説明の画面
+    })
+
+    $('.return-level-selection').click(function(){
+        $('#description-screen').hide();
+        $('#level-selection-screen').show();
+        // レベル選択に戻る
     })
 });
