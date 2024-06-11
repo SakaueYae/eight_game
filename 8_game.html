@@ -13,8 +13,8 @@
             margin-top: 20px;
         }
         #images img {
-            width: 200px;
-            height: 200px;
+            width: 600px;
+            height: 400px;
         }
         button {
             margin: 10px;
@@ -39,7 +39,6 @@
         <div>
             <button id="back-button">引き返す</button>
             <button id="go-button">進む</button>
-            <button id="start-button">進む</button> <!-- 元画像表示後の進むボタン -->
         </div>
         <div class="message" id="message"></div>
     </div>
@@ -56,12 +55,12 @@
             let requiredCorrect = 0;
             let currentImage = '';
             let difficulty = '';
-            const gameImages = ['original.png', 'game1.png', 'game2.png', 'game3.png', 'game4.png', 'game5.png', 'game6.png', 'game7.png', 'game8.png', 'game9.png', 'game10.png']; // 10枚のゲーム画像
-            const originalImage = 'original.png'; // 元の画像（正解の基準）
+            const gameImages = Array.from({length: 20}, (_, i) => `image/${i + 1}.png`); // 20枚のゲーム画像
+            const originalImage = 'image/original.png'; // 元の画像（正解の基準）
             const difficulties = {
-                easy: 3,
-                normal: 5,
-                hard: 8
+                easy: 4,
+                normal: 6,
+                hard: 9
             };
 
             function resetGame() {
@@ -71,7 +70,6 @@
                 $('#announcement').hide();
                 $('#difficulty-selection').show();
                 $('#message').text('');
-                $('#start-button').hide();
                 $('#back-button').hide();
                 $('#go-button').hide();
             }
@@ -82,12 +80,14 @@
 
             function showResult(message) {
                 $('#result-message').text(message);
+                $('#announcement').hide(); // ゲームクリア時に~番店を非表示にする
                 $('#game-container').hide();
                 $('#result-container').show();
             }
 
             function getRandomImage() {
-                return gameImages[Math.floor(Math.random() * gameImages.length)];
+                // 50%の確率で元画像かダミー画像を選ぶ
+                return Math.random() < 0.5 ? originalImage : gameImages[Math.floor(Math.random() * gameImages.length)];
             }
 
             function updateAnnouncement() {
@@ -98,24 +98,13 @@
                 difficulty = $(this).data('difficulty');
                 requiredCorrect = difficulties[difficulty];
                 $('#difficulty-selection').hide();
-                $('#announcement').hide();
-                $('#game-container').show();
-                $('#original-image').show();
-                $('#game-image').hide();
-                $('#start-button').show();
-                $('#back-button').hide();
-                $('#go-button').hide();
-            });
-
-            $('#start-button').on('click', function() {
-                currentImage = getRandomImage();
-                $('#game-image').attr('src', currentImage).show();
-                $('#original-image').hide();
                 $('#announcement').text('0番店').show();
-                $('#start-button').hide();
-                $('#back-button').show();
+                $('#game-container').show();
+                $('#original-image').hide();
+                currentImage = originalImage; // 最初は元画像を表示
+                $('#game-image').attr('src', currentImage).show();
+                $('#back-button').hide(); // 0番店では引き返すボタンを非表示
                 $('#go-button').show();
-                showMessage('');
             });
 
             $('#back-button').on('click', function() {
@@ -131,8 +120,13 @@
                 } else {
                     correctCount = 0;
                     $('#announcement').text('0番店');
-                    currentImage = getRandomImage();
+                    currentImage = originalImage;
                     $('#game-image').attr('src', currentImage);
+                }
+                if (correctCount === 0) {
+                    $('#back-button').hide(); // 0番店では引き返すボタンを非表示
+                } else {
+                    $('#back-button').show();
                 }
             });
 
@@ -149,8 +143,13 @@
                 } else {
                     correctCount = 0;
                     $('#announcement').text('0番店');
-                    currentImage = getRandomImage();
+                    currentImage = originalImage;
                     $('#game-image').attr('src', currentImage);
+                }
+                if (correctCount === 0) {
+                    $('#back-button').hide(); // 0番店では引き返すボタンを非表示
+                } else {
+                    $('#back-button').show();
                 }
             });
 
