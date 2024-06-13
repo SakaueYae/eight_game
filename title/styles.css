@@ -149,6 +149,39 @@ body {
     background-color: blue;
 }
 
+.tipsBtn {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #3fcb3d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.tipsBtn:hover {
+    background-color: rgb(0, 255, 149);
+}
+
+.oprationDescriminationBtn {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #a7cb3d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.oprationDescriminationBtn:hover {
+    background-color: rgb(145, 255, 0);
+}
 @keyframes blink {
     0%, 100% { opacity: 1;}
     50% { opacity: 0;}
