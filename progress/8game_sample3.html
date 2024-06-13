@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>間違い探しゲーム</title>
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="8game_sample3.css" />
+  </head>
+  <body>
+    <div id="difficulty-selection">
+      <h1>難易度選択</h1>
+      <button data-difficulty="easy">Level1</button>
+      <button data-difficulty="normal">Level2</button>
+      <button data-difficulty="hard">Level3</button>
+    </div>
+
+    <div id="announcement" class="message">0番店</div>
+
+    <div id="game-container">
+      <div id="images">
+        <img src="original.png" id="original-image" alt="Original Image" />
+        <img src="" id="game-image" alt="Game Image" />
+      </div>
+      <div>
+        <button id="back-button">引き返す</button>
+        <button id="go-button">進む</button>
+      </div>
+      <div class="message" id="message"></div>
+    </div>
+
+    <div id="result-container">
+      <div class="message" id="result-message"></div>
+      <button id="retry-button">タイトルへ戻る</button>
+      <button id="play-again-button">他の難易度で遊ぶ</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="8game_sample3.js"></script>
+  </body>
+</html>
