@@ -1,0 +1,28 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.scene {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.human {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  /* transition: all 0.5s linear; */
+}
+
+.human-img {
+  height: 300px;
+}
