@@ -5,10 +5,10 @@ $(document).ready(function () {
   let difficulty = "";
   const gameImages = Array.from(
     { length: 20 },
-    (_, i) => `images/${i + 1}.png`
+    (_, i) => `../images/${i + 1}.png`
   ); // 20枚のゲーム画像
-  const originalImage = "images/original.png"; // 元の画像（正解の基準）
-  const emptyImage = "images/empty.png"; // 一時的な空画像
+  const originalImage = "../images/ORIGINAL.PNG"; // 元の画像（正解の基準）
+  const emptyImage = "../images/BACK_ONLY.png"; // 一時的な空画像
   const difficulties = {
     easy: 4,
     normal: 6,
