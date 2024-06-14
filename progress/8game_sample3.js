@@ -10,17 +10,15 @@ $(document).ready(function () {
   const originalImage = "../images/ORIGINAL.PNG"; // 元の画像（正解の基準）
   const emptyImage = "../images/BACK_ONLY.png"; // 一時的な空画像
   const difficulties = [4, 6, 9]; // 難易度ごとの正解回数
+  let interval = null;
 
   const onLoad = function () {
     requiredCorrect = difficulties[Number(difficulty) - 1];
-    $("#difficulty-selection").hide();
     $("#announcement").text("0番店").show();
     $("#game-container").show();
     $("#original-image").hide();
     currentImage = originalImage; // 最初は元画像を表示
     $("#game-image").attr("src", currentImage).show();
-    $("#back-button").hide(); // 0番店では引き返すボタンを非表示
-    $("#go-button").show();
   };
 
   onLoad();
@@ -30,10 +28,8 @@ $(document).ready(function () {
     $("#game-container").hide();
     $("#result-container").hide();
     $("#announcement").hide();
-    $("#difficulty-selection").show();
     $("#message").text("");
-    $("#back-button").hide();
-    $("#go-button").hide();
+    $("#overlay-text").hide();
   }
 
   function showMessage(message) {
@@ -54,46 +50,38 @@ $(document).ready(function () {
       : gameImages[Math.floor(Math.random() * gameImages.length)];
   }
 
-  function updateAnnouncement() {
-    $("#announcement").text(correctCount + "番店");
+  // オーバーレイテキスト更新関数
+  function updateOverlayText() {
+    $("#overlay-text").text(correctCount + "番店");
   }
 
   function showNextImage() {
     currentImage = getRandomImage();
     $("#game-image").attr("src", currentImage);
+    $("#overlay-text").hide();
     $("#announcement").show();
-    $("#back-button").show();
-    $("#go-button").show();
   }
 
-  $("button[data-difficulty]").on("click", function () {
-    difficulty = $(this).data("difficulty");
-    requiredCorrect = difficulties[difficulty];
-    $("#difficulty-selection").hide();
-    $("#announcement").text("0番店").show();
-    $("#game-container").show();
-    $("#original-image").hide();
-    currentImage = originalImage; // 最初は元画像を表示
-    $("#game-image").attr("src", currentImage).show();
-    $("#back-button").hide(); // 0番店では引き返すボタンを非表示
-    $("#go-button").show();
-  });
-
   function handleCorrect() {
-    $("#back-button").hide();
-    $("#go-button").hide();
     $("#announcement").hide(); // ~番店を非表示にする
+    $("#human").hide(); // 人間を非表示にする
+    $("#overlay-text")
+      .text(correctCount + "番店")
+      .show(); // オーバーレイテキストを表示
     $("#game-image").attr("src", emptyImage);
+    $("#overlay-text").show();
     setTimeout(function () {
       $("#announcement").show(); // 3秒後に~番店を再表示
+      $("#human").show(); // 人間を再表示
       showNextImage();
+      interval = setInterval(move, 100);
     }, 3000); // 3秒間empty.pngを表示した後に次の画像を表示
   }
 
-  $("#back-button").on("click", function () {
+  const returnAction = function () {
     if (currentImage !== originalImage) {
       correctCount++;
-      updateAnnouncement();
+      updateOverlayText();
       if (correctCount >= requiredCorrect) {
         showResult("おめでとう！ ゲームをクリアしました。");
       } else {
@@ -105,17 +93,12 @@ $(document).ready(function () {
       currentImage = originalImage;
       $("#game-image").attr("src", currentImage);
     }
-    if (correctCount === 0) {
-      $("#back-button").hide(); // 0番店では引き返すボタンを非表示
-    } else {
-      $("#back-button").show();
-    }
-  });
+  };
 
-  $("#go-button").on("click", function () {
+  const goAction = function () {
     if (currentImage === originalImage) {
       correctCount++;
-      updateAnnouncement();
+      updateOverlayText();
       if (correctCount >= requiredCorrect) {
         showResult("おめでとう！ ゲームをクリアしました。");
       } else {
@@ -127,23 +110,76 @@ $(document).ready(function () {
       currentImage = originalImage;
       $("#game-image").attr("src", currentImage);
     }
-    if (correctCount === 0) {
-      $("#back-button").hide(); // 0番店では引き返すボタンを非表示
-    } else {
-      $("#back-button").show();
-    }
-  });
+  };
 
   $("#retry-button").on("click", function () {
     resetGame();
   });
 
   $("#play-again-button").on("click", function () {
-    // 現在の難易度のボタンを隠す
-    $(`button[data-difficulty=${difficulty}]`).hide();
-    // 他の難易度のボタンを表示する
-    $(`button[data-difficulty]:not([data-difficulty=${difficulty}])`).show();
     $("#result-container").hide();
     $("#difficulty-selection").show();
   });
+
+  // 人間の移動
+  let rightPressed = false;
+  let leftPressed = false;
+  let position = $(window).width() - 200;
+  const speed = 50;
+  let flag = null;
+
+  $(window).keydown((e) => {
+    if (e.key === "ArrowRight") {
+      rightPressed = true;
+    } else if (e.key === "ArrowLeft") {
+      leftPressed = true;
+    }
+  });
+
+  $(window).keyup((e) => {
+    if (e.key === "ArrowRight") {
+      rightPressed = false;
+    } else if (e.key === "ArrowLeft") {
+      leftPressed = false;
+    }
+  });
+
+  const draw = () => {
+    if (position > $(window).width() - $("#human").width()) {
+      flag = "right";
+    } else if (position < 0) {
+      flag = "left";
+    }
+
+    $("#human").css("left", `${position}px`);
+  };
+
+  const move = () => {
+    if (flag === "left") {
+      goAction();
+      flag = null;
+      clearInterval(interval);
+      console.log("You can't go left anymore");
+      position = $(window).width() - 200;
+      return;
+    }
+    if (flag === "right") {
+      returnAction();
+      flag = null;
+      clearInterval(interval);
+      console.log("You can't go right anymore");
+      position = 0;
+      return;
+    }
+    draw();
+    if (rightPressed) {
+      if (position + speed > $(window).width() - 200 && correctCount === 0)
+        return;
+      position += speed;
+    } else if (leftPressed) {
+      position -= speed;
+    }
+  };
+
+  interval = setInterval(move, 100);
 });
