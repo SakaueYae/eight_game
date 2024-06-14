@@ -2,18 +2,28 @@ $(document).ready(function () {
   let correctCount = 0;
   let requiredCorrect = 0;
   let currentImage = "";
-  let difficulty = "";
+  let difficulty = localStorage.getItem("level");
   const gameImages = Array.from(
     { length: 20 },
     (_, i) => `../images/${i + 1}.png`
   ); // 20枚のゲーム画像
   const originalImage = "../images/ORIGINAL.PNG"; // 元の画像（正解の基準）
   const emptyImage = "../images/BACK_ONLY.png"; // 一時的な空画像
-  const difficulties = {
-    easy: 4,
-    normal: 6,
-    hard: 9,
+  const difficulties = [4, 6, 9]; // 難易度ごとの正解回数
+
+  const onLoad = function () {
+    requiredCorrect = difficulties[Number(difficulty) - 1];
+    $("#difficulty-selection").hide();
+    $("#announcement").text("0番店").show();
+    $("#game-container").show();
+    $("#original-image").hide();
+    currentImage = originalImage; // 最初は元画像を表示
+    $("#game-image").attr("src", currentImage).show();
+    $("#back-button").hide(); // 0番店では引き返すボタンを非表示
+    $("#go-button").show();
   };
+
+  onLoad();
 
   function resetGame() {
     correctCount = 0;
