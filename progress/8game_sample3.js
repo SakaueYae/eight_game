@@ -15,7 +15,6 @@ $(document).ready(function () {
 
   const onLoad = function () {
     requiredCorrect = difficulties[Number(difficulty) - 1];
-    $("#announcement").text("0番店").show();
     $("#game-container").show();
     $("#original-image").hide();
     currentImage = originalImage; // 最初は元画像を表示
@@ -28,18 +27,11 @@ $(document).ready(function () {
     correctCount = 0;
     $("#game-container").hide();
     $("#result-container").hide();
-    $("#announcement").hide();
-    $("#message").text("");
     $("#overlay-text").hide();
-  }
-
-  function showMessage(message) {
-    $("#message").text(message);
   }
 
   function showResult(message) {
     $("#result-message").text(message);
-    $("#announcement").hide(); // ゲームクリア時には~番店を非表示にする
     $("#game-container").hide();
     $("#result-container").show();
   }
@@ -60,11 +52,9 @@ $(document).ready(function () {
     currentImage = getRandomImage();
     $("#game-image").attr("src", currentImage);
     $("#overlay-text").hide();
-    $("#announcement").show();
   }
 
   function handleCorrect() {
-    $("#announcement").hide(); // ~番店を非表示にする
     $("#human").hide(); // 人間を非表示にする
     $("#overlay-text")
       .text(correctCount + "番店")
@@ -72,11 +62,26 @@ $(document).ready(function () {
     $("#game-image").attr("src", emptyImage);
     $("#overlay-text").show();
     setTimeout(function () {
-      $("#announcement").show(); // 3秒後に~番店を再表示
-      $("#human").show(); // 人間を再表示
+      $("#human").css("left", `${position}px`).show(); // 人間を再表示
       showNextImage();
       interval = setInterval(move, 100);
     }, 3000); // 3秒間empty.pngを表示した後に次の画像を表示
+  }
+
+  // 不正解時の処理関数
+  function handleIncorrect() {
+    $("#human").hide(); // 人間を非表示にする
+    $("#overlay-text").text("0番店").show();
+    $("#game-image").attr("src", emptyImage);
+    $("#overlay-text").show();
+    setTimeout(function () {
+      correctCount = 0;
+      currentImage = originalImage;
+      $("#game-image").attr("src", currentImage);
+      $("#overlay-text").hide();
+      $("#human").css("left", `${position}px`).show(); // 人間を再表示
+      interval = setInterval(move, 100);
+    }, 3000);
   }
 
   const returnAction = function () {
@@ -89,10 +94,7 @@ $(document).ready(function () {
         handleCorrect();
       }
     } else {
-      correctCount = 0;
-      $("#announcement").text("0番店");
-      currentImage = originalImage;
-      $("#game-image").attr("src", currentImage);
+      handleIncorrect();
     }
   };
 
@@ -106,10 +108,7 @@ $(document).ready(function () {
         handleCorrect();
       }
     } else {
-      correctCount = 0;
-      $("#announcement").text("0番店");
-      currentImage = originalImage;
-      $("#game-image").attr("src", currentImage);
+      handleIncorrect();
     }
   };
 
@@ -150,10 +149,11 @@ $(document).ready(function () {
   const draw = () => {
     if (position > $(window).width() - $("#human").width()) {
       flag = "right";
+      return;
     } else if (position < 0) {
       flag = "left";
+      return;
     }
-
     $("#human").css("left", `${position}px`);
   };
 
