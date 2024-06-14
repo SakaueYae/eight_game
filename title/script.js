@@ -24,7 +24,7 @@ $(document).ready(function () {
     $("#description-screen").show();
     // 説明の画面
   });
-
+  /*ルール説明画面*/
   $(".return-level-selection").click(function () {
     $("#description-screen").hide();
     $("#level-selection-screen").show();
@@ -41,11 +41,13 @@ $(document).ready(function () {
     $("#use-screen").show();
     // 操作説明へ
   });
+  /*TIPS画面*/
   $(".tipsToDescription").click(function () {
     $("#tips-screen").hide();
     $("#description-screen").show();
     // ルール説明に戻る
   });
+  /*操作説明画面*/
   $(".useToDescription").click(function () {
     $("#use-screen").hide();
     $("#description-screen").show();
