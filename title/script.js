@@ -29,4 +29,25 @@ $(document).ready(function () {
     $("#level-selection-screen").show();
     // レベル選択に戻る
   });
+  /*TIPS&HOWTOUSE*/
+  $(".descriptionToTips").click(function () {
+    $("#description-screen").hide();
+    $("#tips-screen").show();
+    // TIPSへ
+  });
+  $(".descriptionToUse").click(function () {
+    $("#description-screen").hide();
+    $("#use-screen").show();
+    // 操作説明へ
+  });
+  $(".tipsToDescription").click(function () {
+    $("#tips-screen").hide();
+    $("#description-screen").show();
+    // ルール説明に戻る
+  });
+  $(".useToDescription").click(function () {
+    $("#use-screen").hide();
+    $("#description-screen").show();
+    // ルール説明に戻る
+  });
 });
