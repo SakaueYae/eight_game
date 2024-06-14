@@ -1,7 +1,15 @@
 $(document).ready(function () {
-  $("#main-title-screen").click(function () {
-    $(this).hide();
+  function showLevelSelectionScreen() {
+    $("#main-title-screen").hide();
     $("#level-selection-screen").show();
+  }
+
+  $("#main-title-screen").click(function () {
+    showLevelSelectionScreen();
+  });
+
+  $(document).keydown(function (event) {
+    showLevelSelectionScreen();
   });
 
   $(".level-button").click(function () {
