@@ -26,38 +26,64 @@
         <button class="Description">ゲームの説明 <br/> Description</button>
     </div>
     <div id="description-screen" style="display: none;">
-        <h1>説明/Description</h1>
-        <div class="descriptionText">
-            LELのB4だよーーん🤗遊んでくれてありがとね^^
-            <br/>Thank you for playing🤗
-            <ol>
-                <li>ゲーム概要/OUTLINE
-                    <br/>みんなはいくつかのカフェをめぐるよ！ただ，異変に気づかずに進んでしまうと，最初からやり直しになってしまうんだ😱ゴールを目指して頑張ろう💪🏼
-                    <br/>You'll go to several cafés! But if you don't notice anything unusual, you'll have to start all over again from the beginning😱Get to the finish line! 💪🏼
-                </li>
-                <li>ゲームをスタートしたら，まず０番店に入るよ！その様子をよく覚えておいてね
-                    <br/>When you start the game, you first enter "Shop 0"! Remember how that looks.
-                </li>
-                <li>次の店に入るよ！そしたら，０番店と比べて
-                    <ul>
-                        <li>「何かが違うな🧐」って思ったら引き返してね！</li>
-                        <li>異変を感じなかったらそのまま進んでね！</li>
-                    </ul>
-                    ⚠️「引き返す・進む」の判断を間違えたら０番店からやり直しになるから気を付けてね！⚠️
-                    <br/>
-                    You'll go into the next shop! Then compare it with "Shop 0" and...
-                    <ul>
-                        <li>turn back if you feel that something is different🧐!</li>
-                        <li> if you don't feel anything different, keep going!</li>
-                    </ul>
-                    ⚠️ Be aware that if you make the wrong decision to "turn back or go forward", you'll have to start over from "Shop 0"! ⚠️
-                </li>
-            </ol>
+        <h1>ゲームの説明/Description</h1>
+        <div id="langChenge">
+            <input type="radio" name="land" id="langJa" checked>
+            <input type="radio" name="land" id="langEn">
+            <input type="radio" name="land" id="langZh">
+           
+            <label for="langJa">
+              <span lang="ja">日本語</span>
+              <span lang="en">Japanese</span>
+              <span lang="zh">日本</span>
+            </label>
+            <label for="langEn">
+              <span lang="ja">英語</span>
+              <span lang="en">English</span>
+              <span lang="zh">英语</span>
+            </label>
+            <label for="langZh">
+               <span lang="ja">中国語</span>
+               <span lang="en">Chinese</span>
+               <span lang="zh">中文</span>
+            </label>
+           
+            <div>
+                <p lang="ja">LELのB4だよーーん🤗遊んでくれてありがとね^^</p>
+                <p lang="en">Thank you for playing🤗</p>
+                <ol>
+                    <li>
+                        <p lang="ja">ゲーム概要<br/>みんなはいくつかのカフェをめぐるよ！ただ，異変に気づかずに進んでしまうと，最初からやり直しになってしまうんだ😱ゴールを目指して頑張ろう💪🏼</p>
+                        <p lang="en">OUTLINE</p>
+                    </li>
+                    <li>
+                        <p lang="ja">ゲームをスタートしたら，まず０番店に入るよ！その様子をよく覚えておいてね</p>
+                        <p lang="en">When you start the game, you first enter "Shop 0"! Remember how that looks.</p>
+                    </li>
+                    <li>
+                        <p lang="ja">次の店に入るよ！そしたら，０番店と比べて</p>
+                        <p lang="en">You'll go into the next shop! Then compare it with "Shop 0" and...</p>
+                        <ul>
+                            <li>
+                                <p lang="ja">「何かが違うな🧐」って思ったら引き返してね！</p>
+                                <p lang="en">turn back if you feel that something is different</p>
+                            </li>
+                            <li>
+                                <p lang="ja">異変を感じなかったらそのまま進んでね！</p>
+                                <p lang="en">if you don't feel anything different, keep going!</p>
+                            </li>
+                        </ul>
+                        <p lang="ja">⚠️「引き返す・進む」の判断を間違えたら０番店からやり直しになるから気を付けてね！⚠️</p>
+                        <p lang="en">⚠️Be aware that if you make the wrong decision to "turn back or go forward", you'll have to start over from "Shop 0"⚠️</p>
+                    </li>
+                </ol>
+            </div>
             <button class="descriptionToTips">TIPS</button>
             <button class="descriptionToUse">HowToUse</button>
         </div>
         <button class="return-level-selection">戻る/return</button>
     </div>
+    
     
     <div id="tips-screen" style="display: none;">
         <h1>TIPS</h1>
