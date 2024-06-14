@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  document.getElementById("main-bgm").play();
   let correctCount = 0;
   let requiredCorrect = 0;
   let currentImage = "";
