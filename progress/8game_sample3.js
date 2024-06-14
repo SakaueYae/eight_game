@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  document.getElementById("main-bgm").play();
   let correctCount = 0;
   let requiredCorrect = 0;
   let currentImage = "";
@@ -128,6 +129,8 @@ $(document).ready(function () {
   let flag = null;
 
   $(window).keydown((e) => {
+    document.getElementById("wark").currentTime = 0;
+    document.getElementById("wark").play();
     if (e.key === "ArrowRight") {
       rightPressed = true;
     } else if (e.key === "ArrowLeft") {
