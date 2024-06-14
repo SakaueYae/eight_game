@@ -1,7 +1,7 @@
 let hold = true;
 let rightPressed = false;
 let leftPressed = false;
-let position = $(window).width() - $("#human").width();
+let position = $(window).width() - 200;
 const speed = 50;
 let flag = null;
 

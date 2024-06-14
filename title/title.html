@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>ゲームタイトル画面</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
+    <audio src="../sound/button33.mp3" id="button33"></audio>
+    <audio src="../sound/button47.mp3" id="button47"></audio>
+
     <div id="main-title-screen">
-        <h1>8番カフェ</h1>
-        <h2>8th cafe</h2>
-        <p id="start-text"><b>クリックしてスタート<br/> Click to start</b></p>
+      <h1>8番カフェ</h1>
+      <h2>8th cafe</h2>
+      <p id="start-text">
+        <b
+          >クリックしてスタート<br />
+          Click to start</b
+        >
+      </p>
     </div>
-    <div id="level-selection-screen" style="display: none;">
-        <h1>レベル選択</h1>
-        <h2>select level</h2>
-        <div id="level-selection">
-            <button class="level-button" data-level="1">Level 1</button>
-            <button class="level-button" data-level="2">Level 2</button>
-            <button class="level-button" data-level="3">Level 3</button>
-        </div>
-        <button class="Description">ゲームの説明 <br/> Description</button>
-    </div>
+
     <div id="description-screen" style="display: none;">
         <h1>ゲームの説明/Description</h1>
         <div id="langChenge">
@@ -91,24 +90,87 @@
             <br/>It's easier to spot mistakes if you look here.
         </h2>
         <div class="descriptionText">
-            <ul>
-                <li>黒板の画鋲・大きさ/</li>
-                <li>チラシの文字（大文字か小文字か）</li>
-                <li>窓・扉の大きさ，形</li>
-                <li>ランプの位置</li>
-            </ul>
-        </div>
-        <button class="tipsToDescription"> Return</button>
+=======
+    <div id="level-selection-screen" style="display: none">
+      <h1>レベル選択</h1>
+      <h2>select level</h2>
+      <div id="level-selection">
+        <button class="level-button" data-level="1">Level 1</button>
+        <button class="level-button" data-level="2">Level 2</button>
+        <button class="level-button" data-level="3">Level 3</button>
+      </div>
+      <button class="Description">
+        ゲームの説明 <br />
+        Description
+      </button>
     </div>
-    <div id="use-screen" style="display: none;">
-        <h1>基本操作/Basic Operations</h1>
-        <text>
-        "０番店"と比べて違いが発見できたら左キーを押す．そうでなければ，そのまま右キーを押す<br/>
-        If you find a difference compared to "shop 0", press the left key. Otherwise, press the right key.<br/>
-        </text>
-        <button class="useToDescription"> Return</button>
+    <div id="description-screen" style="display: none">
+      <h1>説明/Description</h1>
+      <div class="descriptionText">
+        LELのB4だよーーん🤗遊んでくれてありがとね^^
+        <br />Thank you for playing🤗
+        <ol>
+          <li>
+            ゲーム概要/OUTLINE
+            <br />みんなはいくつかのカフェをめぐるよ！ただ，異変に気づかずに進んでしまうと，最初からやり直しになってしまうんだ😱ゴールを目指して頑張ろう💪🏼
+            <br />You'll go to several cafés! But if you don't notice anything
+            unusual, you'll have to start all over again from the beginning😱Get
+            to the finish line! 💪🏼
+          </li>
+          <li>
+            ゲームをスタートしたら，まず０番店に入るよ！その様子をよく覚えておいてね
+            <br />When you start the game, you first enter "Shop 0"! Remember
+            how that looks.
+          </li>
+          <li>
+            次の店に入るよ！そしたら，０番店と比べて
+            <ul>
+              <li>「何かが違うな🧐」って思ったら引き返してね！</li>
+              <li>異変を感じなかったらそのまま進んでね！</li>
+            </ul>
+            ⚠️「引き返す・進む」の判断を間違えたら０番店からやり直しになるから気を付けてね！⚠️
+            <br />
+            You'll go into the next shop! Then compare it with "Shop 0" and...
+
+            <ul>
+              <li>turn back if you feel that something is different🧐!</li>
+              <li>if you don't feel anything different, keep going!</li>
+            </ul>
+            ⚠️ Be aware that if you make the wrong decision to "turn back or go
+            forward", you'll have to start over from "Shop 0"! ⚠️
+          </li>
+        </ol>
+        <button class="descriptionToTips">TIPS</button>
+        <button class="descriptionToUse">HowToUse</button>
+      </div>
+      <button class="return-level-selection">戻る/return</button>
+    </div>
+
+    <div id="tips-screen" style="display: none">
+      <h1>TIPS</h1>
+      <h2>
+        ここに注目して間違いを探してみてね🙌🏼 <br />It's easier to spot mistakes
+        if you look here.
+      </h2>
+      <div class="descriptionText">
+        <ul>
+          <li>黒板の画鋲・大きさ/</li>
+          <li>チラシの文字（大文字か小文字か）</li>
+          <li>窓・扉の大きさ，形</li>
+          <li>ランプの位置</li>
+        </ul>
+      </div>
+      <button class="tipsToDescription">Return</button>
+    </div>
+    <div id="use-screen" style="display: none">
+      <h1>基本操作/Basic Operations</h1>
+      <text>
+        "０番店"と比べて違いが発見できたら左キーを押す．そうでなければ，そのまま右キーを押す<br />
+        If you find a difference compared to "shop 0", press the left key.
+        Otherwise, press the right key.<br />
+      </text>
+      <button class="useToDescription">Return</button>
     </div>
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>

@@ -8,13 +8,16 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
       #game-container,
       #result-container,
-      #announcement,
       #start-button {
         display: none;
       }
@@ -24,22 +27,29 @@
       }
       #images {
         position: relative;
-        width: 600px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
       }
       #images img {
         width: 100%;
-        height: 100%;
+        height: auto;
         display: block;
       }
       #overlay-text {
         position: absolute;
-        top: 10px; /* 上から10px */
-        right: 10px; /* 右から10px */
+        top: 10px;
+        right: 10px;
         font-size: 36px;
-        color: red; /* 目立つ色に設定 */
-        display: none; /* 初期状態では非表示 */
-        z-index: 10; /* 画像の上に表示 */
+        color: red;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid white;
+        display: none;
+        z-index: 10;
       }
       button {
         margin: 10px;
@@ -54,11 +64,13 @@
       <button data-difficulty="hard">Level3</button>
     </div>
 
-    <div id="announcement" class="message">0番店</div>
-
     <div id="game-container">
       <div id="images">
-        <img src="original.png" id="original-image" alt="Original Image" />
+        <img
+          src="image/original.png"
+          id="original-image"
+          alt="Original Image"
+        />
         <img src="" id="game-image" alt="Game Image" />
         <div id="overlay-text">0番店</div>
       </div>
@@ -85,19 +97,19 @@
           { length: 20 },
           (_, i) => `image/${i + 1}.png`
         ); // 20枚のゲーム画像
-        const originalImage = "image/original.png"; // 元の画像（正解の基準）
-        const emptyImage = "image/empty.png"; // 一時的な空画像
+        const originalImage = "images/original.png"; // 元の画像（正解の基準）
+        const emptyImage = "images/BACK_ONLY.png"; // 一時的な空画像
         const difficulties = {
           easy: 4,
           normal: 6,
           hard: 9,
         };
 
+        // ゲームリセット関数
         function resetGame() {
           correctCount = 0;
           $("#game-container").hide();
           $("#result-container").hide();
-          $("#announcement").hide();
           $("#difficulty-selection").show();
           $("#message").text("");
           $("#back-button").hide();
@@ -105,17 +117,19 @@
           $("#overlay-text").hide();
         }
 
+        // メッセージ表示関数
         function showMessage(message) {
           $("#message").text(message);
         }
 
+        // 結果表示関数
         function showResult(message) {
           $("#result-message").text(message);
-          $("#announcement").hide(); // ゲームクリア時には~番店を非表示にする
           $("#game-container").hide();
           $("#result-container").show();
         }
 
+        // ランダムな画像取得関数
         function getRandomImage() {
           // 70%の確率でダミー画像、30%の確率で元画像を選ぶ
           return Math.random() < 0.3
@@ -123,10 +137,12 @@
             : gameImages[Math.floor(Math.random() * gameImages.length)];
         }
 
-        function updateAnnouncement() {
-          $("#announcement").text(correctCount + "番店");
+        // オーバーレイテキスト更新関数
+        function updateOverlayText() {
+          $("#overlay-text").text(correctCount + "番店");
         }
 
+        // 次の画像を表示する関数
         function showNextImage() {
           currentImage = getRandomImage();
           $("#game-image").attr("src", currentImage);
@@ -135,6 +151,7 @@
           $("#go-button").show();
         }
 
+        // 正解時の処理関数
         function handleCorrect() {
           $("#back-button").hide();
           $("#go-button").hide();
@@ -142,47 +159,48 @@
             .text(correctCount + "番店")
             .show();
           $("#game-image").attr("src", emptyImage);
-          $("#overlay-text").show(); // 文字を表示
+          $("#overlay-text").show();
           setTimeout(function () {
-            $("#overlay-text").hide(); // 文字を隠す
-            showNextImage(); // 次の画像を表示
-          }, 3000); // 3秒間empty.pngを表示した後に次の画像を表示
+            $("#overlay-text").hide();
+            showNextImage();
+          }, 3000);
         }
 
+        // 不正解時の処理関数
         function handleIncorrect() {
           $("#back-button").hide();
           $("#go-button").hide();
           $("#overlay-text").text("0番店").show();
           $("#game-image").attr("src", emptyImage);
-          $("#overlay-text").show(); // 文字を表示
+          $("#overlay-text").show();
           setTimeout(function () {
             correctCount = 0;
-            $("#announcement").text("0番店");
             currentImage = originalImage;
             $("#game-image").attr("src", currentImage);
-            $("#overlay-text").hide(); // 文字を隠す
-            $("#back-button").hide(); // 0番店では引き返すボタンを非表示
+            $("#overlay-text").hide();
+            $("#back-button").hide();
             $("#go-button").show();
-          }, 3000); // 3秒間empty.pngを表示した後に0番店に戻る
+          }, 3000);
         }
 
+        // 難易度選択ボタンのクリックイベント
         $("button[data-difficulty]").on("click", function () {
           difficulty = $(this).data("difficulty");
           requiredCorrect = difficulties[difficulty];
           $("#difficulty-selection").hide();
-          $("#announcement").text("0番店").show();
           $("#game-container").show();
           $("#original-image").hide();
-          currentImage = originalImage; // 最初は元画像を表示
+          currentImage = originalImage;
           $("#game-image").attr("src", currentImage).show();
-          $("#back-button").hide(); // 0番店では引き返すボタンを非表示
+          $("#back-button").hide();
           $("#go-button").show();
         });
 
+        // 引き返すボタンのクリックイベント
         $("#back-button").on("click", function () {
           if (currentImage !== originalImage) {
             correctCount++;
-            updateAnnouncement();
+            updateOverlayText();
             if (correctCount >= requiredCorrect) {
               showResult("おめでとう！ ゲームをクリアしました。");
             } else {
@@ -193,10 +211,11 @@
           }
         });
 
+        // 進むボタンのクリックイベント
         $("#go-button").on("click", function () {
           if (currentImage === originalImage) {
             correctCount++;
-            updateAnnouncement();
+            updateOverlayText();
             if (correctCount >= requiredCorrect) {
               showResult("おめでとう！ ゲームをクリアしました。");
             } else {
@@ -207,10 +226,12 @@
           }
         });
 
+        // タイトルへ戻るボタンのクリックイベント
         $("#retry-button").on("click", function () {
           resetGame();
         });
 
+        // 他の難易度で遊ぶボタンのクリックイベント
         $("#play-again-button").on("click", function () {
           // 現在の難易度のボタンを隠す
           $(`button[data-difficulty=${difficulty}]`).hide();
