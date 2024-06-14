@@ -14,7 +14,8 @@ $(document).ready(function () {
 
   $(".level-button").click(function () {
     var level = $(this).data("level");
-    alert("レベル " + level + " が選択されました!");
+    localStorage.setItem("level", level);
+    window.location.href = "../progress/8game_sample3.html";
     // ここにゲームのレベルに応じた処理を追加します。
   });
 
