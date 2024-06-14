@@ -69,3 +69,7 @@ button {
   display: none;
   z-index: 10;
 }
+
+audio {
+  display: none;
+}
