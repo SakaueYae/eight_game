@@ -121,7 +121,7 @@ $(document).ready(function () {
       $("#game-image").attr("src", currentImage).show();
 
       // 難易度が9のときだけタイマーを表示してカウントダウンを開始
-      if (difficulty === "3") {
+      /*if (difficulty === "3") {
         $("#timer").show();
         timeLeft = 10;
         $("#time-left").text(timeLeft);
@@ -136,7 +136,7 @@ $(document).ready(function () {
             showTimeoutScreen();
           }
         }, 1000);
-      }
+      }*/
     };
 
     onLoad();
