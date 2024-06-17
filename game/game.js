@@ -222,6 +222,7 @@ $(document).ready(function () {
     $("#result-container").on("click", function () {
       document.getElementById("shining_star").pause();
       document.getElementById("shining_star").currentTime = 0;
+      PlayButton47();
       resetGame();
     });
 
