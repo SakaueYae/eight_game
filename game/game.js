@@ -21,7 +21,7 @@ $(document).ready(function () {
     $("#main-title-screen").show();
 
     //メインタイトル⇒レベル選択画面
-    $("#main-title-screen").one("click", function () {
+    $("#main-title-screen").click(function () {
       document.getElementById("title-bgm").currentTime = 0;
       document.getElementById("title-bgm").play();
       PlayButton47();
@@ -37,6 +37,18 @@ $(document).ready(function () {
       localStorage.setItem("level", level);
       $("#level-selection-screen").hide();
       game();
+    });
+    //クレジットへ遷移
+    $(".levelToCredit").click(function () {
+      PlayButton47();
+      $("#level-selection-screen").hide();
+      $("#Credit").show();
+    });
+    //クレジットからタイトル画面
+    $(".creditToTitle").click(function () {
+      PlayButton47();
+      $("#Credit").hide();
+      $("#main-title-screen").show();
     });
 
     $(".Description").click(function () {

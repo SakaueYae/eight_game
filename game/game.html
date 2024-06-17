@@ -20,144 +20,200 @@
     <audio src="../sound/wark.mp3" id="wark"></audio>
     <audio src="../sound/shining_star.mp3" id="shining_star" loop></audio>
 
-    <!-- タイトル画面 -->
-    <div id="main-title-screen">
-      <h1>8番カフェ</h1>
-      <h2>8th cafe</h2>
-      <p id="start-text">
-        <b
-          >クリックしてスタート<br />
-          Click to start</b
-        >
-      </p>
-    </div>
+ <!--タイトル画面-->
+ <div id="main-title-screen">
+  <h1>8番カフェ</h1>
+  <h2>8th cafe</h2>
+  <p id="start-text">
+    <b
+      >クリックしてスタート<br />
+      Click to start</b
+    >
+  </p>
+</div>
+<!--レベル選択画面-->
+<div id="level-selection-screen" style="display: none">
+  <h1>レベル選択</h1>
+  <h2>select level</h2>
+  <div id="level-selection">
+    <button class="level-button" data-level="1">Level 1</button>
+    <button class="level-button" data-level="2">Level 2</button>
+    <button class="level-button" data-level="3">Level 3</button>
+  </div>
+  <button class="Description">
+    ゲームの説明 <br />
+    Description
+  </button>
+  <button class="levelToCredit">Credit</button>
+</div>
+<!--クレジット画面-->
+<div id="Credit" style="display: none">
+  <div class="credits">
+    <ul>
+      <li>
+        Owner
+        <ul>
+          <li>YAE SAKAUE</li>
+          <li>MASATSUGU NAGAO</li>
+          <li>KYOSUKE HAMADA</li>
+          <li>KAZUKI MAEHARA</li>
+        </ul>
+      </li>
+      <li>
+        Illustration
+        <ul>
+          <li> <a href="https://illustkun.com/">いらすとくん</a></li>
+          <li> <a href="https://dot-illust.net/">DOT ILLUST</a></li>
+        </ul>
+      </li>
+      <li>
+        Music
+        <ul>
+          <li><a href=" https://maou.audio/">魔王魂</a></li>
+          <li> <a href="https://soundeffect-lab.info/">効果音ラボ</a></li>
+        </ul>            
+      </li>
+      <li>
+        Special Thanks
+        <ul>
+          <li>AKIO UEDA</li>
+          <li>Everyone who Plays This Game Today</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+    <button class="creditToTitle">タイトル画面に戻る/Return</button>
+</div>
+<!--説明画面-->
+<div id="description-screen" style="display: none">
+  <h1>ゲームの説明/Description</h1>
+  <div id="langChenge">
+    <input type="radio" name="land" id="langJa" checked />
+    <input type="radio" name="land" id="langEn" />
+    <input type="radio" name="land" id="langZh" />
 
-    <!-- 説明画面 -->
-    <div id="description-screen" style="display: none">
-      <h1>ゲームの説明/Description</h1>
-      <div id="langChenge">
-        <input type="radio" name="land" id="langJa" checked />
-        <input type="radio" name="land" id="langEn" />
-        <input type="radio" name="land" id="langZh" />
+    <label for="langJa">
+      <span lang="ja">日本語</span>
+      <span lang="en">Japanese</span>
+      <span lang="zh">🗾</span>
+    </label>
+    <label for="langEn">
+      <span lang="ja">英語</span>
+      <span lang="en">English</span>
+      <span lang="zh">🗽</span>
+    </label>
+    <label for="langZh">
+      <span lang="ja">おじさん</span>
+      <span lang="en">ojisan</span>
+      <span lang="zh">👴🏼</span>
+    </label>
 
-        <label for="langJa">
-          <span lang="ja">日本語</span>
-          <span lang="en">Japanese</span>
-          <span lang="zh">日本</span>
-        </label>
-        <label for="langEn">
-          <span lang="ja">英語</span>
-          <span lang="en">English</span>
-          <span lang="zh">英语</span>
-        </label>
-        <label for="langZh">
-          <span lang="ja">中国語</span>
-          <span lang="en">Chinese</span>
-          <span lang="zh">中文</span>
-        </label>
-
-        <div>
-          <p lang="ja">LELのB4だよーーん🤗遊んでくれてありがとね^^</p>
-          <p lang="en">Thank you for playing🤗</p>
-          <ol>
-            <li>
-              <p lang="ja">
-                ゲーム概要<br />みんなはいくつかのカフェをめぐるよ！ただ，異変に気づかずに進んでしまうと，最初からやり直しになってしまうんだ😱ゴールを目指して頑張ろう💪🏼
-              </p>
-              <p lang="en">OUTLINE</p>
-            </li>
-            <li>
-              <p lang="ja">
-                ゲームをスタートしたら，まず０番店に入るよ！その様子をよく覚えておいてね
-              </p>
-              <p lang="en">
-                When you start the game, you first enter "Shop 0"! Remember how
-                that looks.
-              </p>
-            </li>
-            <li>
-              <p lang="ja">次の店に入るよ！そしたら，０番店と比べて</p>
-              <p lang="en">
-                You'll go into the next shop! Then compare it with "Shop 0"
-                and...
-              </p>
-              <ul>
-                <li>
-                  <p lang="ja">「何かが違うな🧐」って思ったら引き返してね！</p>
-                  <p lang="en">
-                    turn back if you feel that something is different
-                  </p>
-                </li>
-                <li>
-                  <p lang="ja">異変を感じなかったらそのまま進んでね！</p>
-                  <p lang="en">
-                    if you don't feel anything different, keep going!
-                  </p>
-                </li>
-              </ul>
-              <p lang="ja">
-                ⚠️「引き返す・進む」の判断を間違えたら０番店からやり直しになるから気を付けてね！⚠️
-              </p>
-              <p lang="en">
-                ⚠️Be aware that if you make the wrong decision to "turn back or
-                go forward", you'll have to start over from "Shop 0"⚠️
-              </p>
-            </li>
-          </ol>
-        </div>
-
-        <button class="descriptionToTips">ゲームのコツ/TIPS</button>
-        <button class="descriptionToUse">遊び方/HowToUse</button>
-      </div>
-      <button class="return-level-selection">戻る/return</button>
-    </div>
-
-    <!-- レベル選択画面 -->
-    <div id="level-selection-screen" style="display: none">
-      <h1>レベル選択</h1>
-      <h2>select level</h2>
-      <div id="level-selection">
-        <button class="level-button" data-level="1">Level 1</button>
-        <button class="level-button" data-level="2">Level 2</button>
-        <button class="level-button" data-level="3">Level 3</button>
-      </div>
-      <button class="Description">
-        ゲームの説明 <br />
-        Description
-      </button>
-    </div>
-
-    <!-- Tips画面 -->
-    <div id="tips-screen" style="display: none">
-      <h1>ゲームのコツ/TIPS</h1>
-      <div class="tips-screen-text">
-        <h2>
-          ここに注目して間違いを探してみてね🙌🏼 <br />It's easier to spot
-          mistakes if you look here.
-        </h2>
-        <div class="descriptionText">
+    <div>
+      <p lang="ja">いつもお世話になっております．学習工学研究室のB4です．本日はお時間いただき，ありがとうございます．ぜひお楽しみくださいませ．</p>
+      <p lang="en">Thank you for playing🤗</p>
+      <p lang="zh">LELのB4だよーーん🤗みんなのお目々、キラキラ😃✋💗❗😃♥ (^o^)(^_^)💕😍(^з<)してルネ😘今日は遊んでくれてありがとネ🙌🏼^^</p>
+      <ol>
+        <li>
+          <p lang="ja">
+            ゲーム概要<br />これから，いくつかのカフェをめぐっていただきます．その中で，いくつかの異変があります．異変に気付かずに進んでしまうと初めからやりなおしになってしまいます．ゴールを目指してお進みくださいませ．
+          </p>
+          <p lang="en">OUTLINE<br />
+            You are now going to visit some cafés. In the process, there will be some anomalies. If you do not notice anything unusual, you will have to start all over again from the beginning. Please keep going towards the goal.
+          </p>
+          <p lang="zh">
+            やぁやぁ、みんな！これからいくつかのカフェをめぐるんだって！☕️✨でもね、異変に気づかずに進んでしまうと、最初からやり直しになっちゃうんだよ😱💦だから、気をつけてゴールを目指して頑張ろうネ！💪🏼👍😆
+          </p>
+        </li>
+        <li>
+          <p lang="ja">
+            ゲームを開始したら，最初に0番店に入りますので，その様子をよく覚えておいてください．
+          </p>
+          <p lang="en">
+            When you start the game, you first enter "Shop 0"! Remember how
+            that looks.
+          </p>
+          <p lang="zh">
+            やぁやぁ、ゲームをスタートしたらね、まずは0番店🏠に入るんだよ！😄👍その様子をよーく覚えておいてネ！👀✨
+          </p>
+        </li>
+        <li>
+          <p lang="ja">
+            次の店に入ります．０番店と比べて
+          </p>
+          <p lang="en">
+            You'll go into the next shop! Then compare it with "Shop 0"
+            and...
+          </p>
+          <p lang="zh">
+            ｱｾｱｾ💧😥💦次の店に入るよ！😄0番店と比べて
+          </p>
           <ul>
-            <li>黒板の画鋲・大きさ/色</li>
-            <li>チラシの文字（大文字か小文字か）</li>
-            <li>窓・扉の大きさ，形</li>
-            <li>ランプの位置</li>
+            <li>
+              <p lang="ja">
+                「何かが違う」と感じたら引き返してください。
+                 </p>
+              <p lang="en">
+                turn back if you feel that something is different
+              </p>
+              <p lang="zh">「何かが違うな🧐」って思ったら、引き返してネ！</p>
+            </li>
+            <li>
+              <p lang="ja">
+                異変を感じなかったらそのまま進んでください．
+              </p>
+              <p lang="en">
+                if you don't feel anything different, keep going!
+              </p>
+              <p lang="zh">
+                異変を感じなかったら、そのまま進んでいいんだよ！👍✨みんなで頑張ろう〜！✊💪🏼
+              </p>
+            </li>
           </ul>
-        </div>
-      </div>
-      <button class="tipsToDescription">Return</button>
+          <p lang="ja">
+            ⚠️「引き返す・進む」の判断を間違えたら０番店からやり直しになりますからお気を付けください⚠️
+          </p>
+          <p lang="en">
+            ⚠️Be aware that if you make the wrong decision to "turn back or
+            go forward", you'll have to start over from "Shop 0"⚠️
+          </p>
+          <p lang="zh">
+            みんな！⚠️注意だよ⚠️「引き返す・進む」の判断を間違えたらね、0番店からやり直しになっちゃうんだよ〜😱💦だから、気をつけて進んでネ！😊👍
+          </p>
+        </li>
+      </ol>
+      <p lang="zh">今日は天気が悪いね(◎ ＿◎;)(-_-;)😰こんな日は全体ゼミ💻休んでﾎﾞｸと旅館に行こう、ヨ😃✋（笑）😃☀ なんちゃって😆😃❗🎵💗</p>
     </div>
-
-    <!-- HowToUse画面 -->
-    <div id="use-screen" style="display: none">
-      <h1>基本操作/Basic Operations</h1>
-      <text>
-        "０番店"と比べて違いが発見できたら左キーを押す．そうでなければ，そのまま右キーを押す<br />
-        If you find a difference compared to "shop 0", press the left key.
-        <br />
-        Otherwise, press the right key.<br />
-      </text>
-      <button class="useToDescription">Return</button>
-    </div>
+    <button class="descriptionToTips">ゲームのコツ/TIPS</button>
+    <button class="descriptionToUse">操作方法/HowToUse</button>
+  </div>
+  <button class="return-level-selection">戻る/return</button>
+</div>
+<!--TIPS画面-->
+<div id="tips-screen" style="display: none">
+  <h1>TIPS</h1>
+  <h2>
+    ここに注目して間違いを探してみてね🙌🏼 <br />It's easier to spot mistakes
+    if you look here.
+  </h2>
+  <ul>
+    <li>黒板の画鋲・大きさ/Blackboard studs and size</li>
+    <li>チラシの文字（大文字か小文字か）/Lettering on flyers (upper or lower case)</li>
+    <li>窓・扉の大きさ，形/Size and shape of windows/doors</li>
+    <li>ランプの位置/Position of lamps</li>
+  </ul>
+  <div class="descriptionText"></div>
+  <button class="tipsToDescription">戻る/return</button>
+</div>
+<!--HTOUSE画面-->
+<div id="use-screen" style="display: none">
+  <h1>基本操作/Basic Operations</h1>
+  <h2>
+    "０番店"と比べて違いが発見できたら左キーを押す．そうでなければ，そのまま右キーを押す<br />
+    If you find a difference compared to "shop 0", press the left key.
+    Otherwise, press the right key.<br />
+  </h2>
+  <button class="useToDescription">Return</button>
+</div>
 
     <div id="game-container" class="game-container">
       <!-- 背景画像 -->
