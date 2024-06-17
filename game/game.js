@@ -143,7 +143,7 @@ $(document).ready(function () {
     function handleCorrect() {
       $("#human").hide(); // 人間を非表示にする
       $("#overlay-text")
-        .text(correctCount + "番店")
+        .html(correctCount + "番店" + "<br>" + correctCount + "th store")
         .show(); // オーバーレイテキストを表示
       $("#game-image").attr("src", emptyImage);
       $("#overlay-text").show();
