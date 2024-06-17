@@ -114,6 +114,7 @@ $(document).ready(function () {
       $("#game-container").hide();
       $("#result-container").hide();
       $("#overlay-text").hide();
+      title();
     }
 
     function showResult(message) {
@@ -179,6 +180,8 @@ $(document).ready(function () {
         correctCount++;
         updateOverlayText();
         if (correctCount >= requiredCorrect) {
+          document.getElementById("main-bgm").pause();
+          document.getElementById("shining_star").play();
           showResult("おめでとう！ ゲームをクリアしました。");
         } else {
           handleCorrect();
@@ -193,6 +196,8 @@ $(document).ready(function () {
         correctCount++;
         updateOverlayText();
         if (correctCount >= requiredCorrect) {
+          document.getElementById("main-bgm").pause();
+          document.getElementById("shining_star").play();
           showResult("おめでとう！ ゲームをクリアしました。");
         } else {
           handleCorrect();
@@ -202,13 +207,10 @@ $(document).ready(function () {
       }
     };
 
-    $("#retry-button").on("click", function () {
+    $(".retry-button").on("click", function () {
+      document.getElementById("shining_star").pause();
+      document.getElementById("shining_star").currentTime = 0;
       resetGame();
-    });
-
-    $("#play-again-button").on("click", function () {
-      $("#result-container").hide();
-      $("#difficulty-selection").show();
     });
 
     // 人間の移動
