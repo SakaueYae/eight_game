@@ -40,13 +40,13 @@ $(document).ready(function () {
     });
     //クレジットへ遷移
     $(".levelToCredit").click(function () {
-      PlayButton47();
+      PlayButton33();
       $("#level-selection-screen").hide();
       $("#Credit").show();
     });
     //クレジットからタイトル画面
     $(".creditToTitle").click(function () {
-      PlayButton47();
+      PlayButton33();
       $("#Credit").hide();
       $("#main-title-screen").show();
     });
@@ -219,7 +219,7 @@ $(document).ready(function () {
       }
     };
 
-    $(".retry-button").on("click", function () {
+    $("#result-container").on("click", function () {
       document.getElementById("shining_star").pause();
       document.getElementById("shining_star").currentTime = 0;
       resetGame();
