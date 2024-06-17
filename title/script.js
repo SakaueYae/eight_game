@@ -32,7 +32,6 @@ $(document).ready(function () {
     PlayButton47();
     $("#Credit").hide();
     $("#main-title-screen").show();
-    //
   });
   $(".Description").click(function () {
     PlayButton33();
