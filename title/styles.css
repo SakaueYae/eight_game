@@ -7,6 +7,7 @@ body {
   margin: 0;
   background-image: url(title.jpg);
   background-size: cover;
+  overflow: hidden;
 }
 
 #main-title-screen,
@@ -55,6 +56,14 @@ body {
   text-shadow: 2px 2px 10px #4d9bc1, -2px 2px 10px #4d9bc1,
     2px -2px 10px #4d9bc1, -2px -2px 10px #4d9bc1;
   animation: blink 1.5s infinite;
+}
+
+.credits {
+  font-size: 30px;
+  color: #238be6;
+  background: #f9f9f9e1; 
+  margin-bottom: 0;
+  padding: 0.5em 2em 0.5em 2em;
 }
 
 /*以下レベル選択画面*/
@@ -109,7 +118,7 @@ body {
 .Description:hover{
   background-color: orange;
 }
-.Credit {
+.levelToCredit,.creditToTitle{
   display: inline-block;
   margin: 10px;
   padding: 15px 30px;
@@ -121,7 +130,7 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-.Credit:hover{
+.Credit:hover.creditToTitle:hover{
   background-color: rgb(21, 255, 0);
 }
 
