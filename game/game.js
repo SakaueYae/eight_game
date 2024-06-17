@@ -158,7 +158,9 @@ $(document).ready(function () {
     // 不正解時の処理関数
     function handleIncorrect() {
       $("#human").hide(); // 人間を非表示にする
-      $("#overlay-text").text("0番店").show();
+      $("#overlay-text")
+        .html("0番店" + "<br>" + "0th store")
+        .show();
       $("#game-image").attr("src", emptyImage);
       $("#overlay-text").show();
       setTimeout(function () {
