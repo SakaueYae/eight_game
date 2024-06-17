@@ -111,7 +111,7 @@ $(document).ready(function () {
     const difficulties = [4, 6, 9]; // 難易度ごとの正解回数
     let interval = null;
     let timerInterval = null;
-    let timeLeft = 90; // 3分 = 180秒
+    let timeLeft = 120; // 3分 = 180秒
 
     const onLoad = function () {
       requiredCorrect = difficulties[Number(difficulty) - 1];
@@ -121,9 +121,9 @@ $(document).ready(function () {
       $("#game-image").attr("src", currentImage).show();
 
       // 難易度が9のときだけタイマーを表示してカウントダウンを開始
-      /*if (difficulty === "3") {
+      if (difficulty === "3") {
         $("#timer").show();
-        timeLeft = 10;
+        timeLeft = 120;
         $("#time-left").text(timeLeft);
         timerInterval = setInterval(function () {
           timeLeft--;
@@ -136,19 +136,20 @@ $(document).ready(function () {
             showTimeoutScreen();
           }
         }, 1000);
-      }*/
+      }
     };
 
     onLoad();
 
     function resetGame() {
-      correctCount = 0;
-      $("#game-container").hide();
-      $("#result-container").hide();
-      $("#overlay-text").hide();
-      $("#timer").hide();
-      $("#timeout-screen").hide();
-      clearInterval(timerInterval);
+      window.location.reload();
+      //correctCount = 0;
+      //$("#game-container").hide();
+      //$("#result-container").hide();
+      //$("#overlay-text").hide();
+      //$("#timer").hide();
+      //$("#timeout-screen").hide();
+      //clearInterval(timerInterval);
       title();
     }
 
@@ -163,6 +164,7 @@ $(document).ready(function () {
       $("#game-container").hide();
       $("#timeout-screen").show();
     }
+
     $("#timeout-screen").on("click", function () {
       PlayButton47();
       resetGame();
@@ -326,7 +328,7 @@ $(document).ready(function () {
   }
 
   // タイトルに戻るボタンのクリックイベント
-  $("#return-to-title").on("click", function () {
+  /*$("#return-to-title").on("click", function () {
     resetGame();
-  });
+  });*/
 });
