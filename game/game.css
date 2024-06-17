@@ -1,0 +1,340 @@
+@import url("https://fonts.googleapis.com/css?family=Sawarabi+Mincho");
+
+body {
+  font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#main-title-screen,
+#use-screen {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/title.jpg);
+  background-size: cover;
+}
+
+#level-selection-screen,
+#description-screen,
+#tips-screen {
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/title.jpg);
+  background-size: cover;
+}
+
+/*以下タイトル画面*/
+#main-title-screen h1 {
+  font-size: 100px;
+  color: transparent;
+  -webkit-text-stroke: 2px #454545;
+  text-shadow: 3px 3px #81bedb;
+  margin-bottom: 0;
+}
+
+#main-title-screen h2 {
+  font-size: 70px;
+  color: transparent;
+  -webkit-text-stroke: 2px #454545;
+  text-shadow: 3px 3px #81bedb;
+  margin-top: 0;
+}
+
+#start-text {
+  cursor: pointer;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 2px 2px 10px #4d9bc1, -2px 2px 10px #4d9bc1,
+    2px -2px 10px #4d9bc1, -2px -2px 10px #4d9bc1;
+  animation: blink 1.5s infinite;
+}
+
+/*以下レベル選択画面*/
+#level-selection-screen h1 {
+  font-size: 50px;
+  color: #ffffff;
+  -webkit-text-stroke: 2px #2891ed;
+  text-shadow: 3px 3px #81bedb;
+  margin-bottom: 0;
+}
+
+#level-selection-screen h2 {
+  font-size: 40px;
+  color: #ffffff;
+  -webkit-text-stroke: 2px #2891ed;
+  text-shadow: 3px 3px #81bedb;
+  margin-top: 0;
+}
+#level-selection {
+  margin-top: 20px;
+}
+
+.level-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #3d9ecb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.level-button:hover,
+.retry-button:hover {
+  background-color: blue;
+}
+
+.Description {
+  display: inline-block;
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #ebbd67;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.Description:hover {
+  background-color: orange;
+}
+
+/*以下説明・TIPS・操作説明画面*/
+
+#description-screen h1,
+#tips-screen h1,
+#use-screen h1 {
+  position: fixed;
+  top: 0;
+  font-size: 40px;
+  color: #ffffff;
+  -webkit-text-stroke: 2px #2891ed;
+  text-shadow: 3px 3px #81bedb;
+}
+
+#description-screen h2,
+#use-screen h2 {
+  font-size: 30px;
+  color: #ffffff;
+  -webkit-text-stroke-width: 0.9px;
+  -webkit-text-stroke-color: rgb(89, 115, 243);
+  margin-bottom: 0;
+}
+
+#langChenge {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3; /*文字色*/
+  background: #fff;
+  border: solid 3px #6091d3; /*線*/
+  border-radius: 10px; /*角の丸み*/
+}
+
+/* === 各ラジオボタンのラベルをボタンに変更 == */
+#langChenge label {
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px #999;
+  padding: 2px 6px;
+}
+
+#langJa:not(:checked) ~ div *[lang="ja"] {
+  display: none;
+}
+#langEn:not(:checked) ~ div *[lang="en"] {
+  display: none;
+}
+#langZh:not(:checked) ~ div *[lang="zh"] {
+  display: none;
+}
+
+/* === 選択されている言語のラベル色を変更 ==== */
+#langJa:checked ~ label[for="langJa"] {
+  background: #ffa64d;
+}
+#langEn:checked ~ label[for="langEn"] {
+  background: #ffa64d;
+}
+#langZh:checked ~ label[for="langZh"] {
+  background: #ffa64d;
+}
+
+.return-level-selection,
+.descriptionToTips,
+.descriptionToUse,
+.useToDescription,
+.tipsToDescription {
+  .descriptionText ol,
+  .descriptionText ul {
+    margin: 5px;
+    padding: 3px;
+  }
+}
+.return-level-selection,
+.descriptionToTips,
+.descriptionToUse,
+.useToDescription,
+.tipsToDescription {
+  display: inline-block;
+  margin: 5px;
+  padding: 15px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #3d9ecb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.return-level-selection:hover,
+.descriptionToTips:hover,
+.descriptionToUse:hover,
+.useToDescription:hover,
+.tipsToDescription:hover {
+  background-color: blue;
+}
+
+#tips-screen h2,
+#use-screen text {
+  font-size: 30px;
+  font-weight: bold;
+  color: #2891ed;
+}
+
+.tips-screen-text,
+#use-screen text {
+  background: #fff;
+  border: solid 3px #6091d3; /*線*/
+  border-radius: 10px;
+  padding: 10px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+#game-container,
+#announcement,
+#start-button {
+  display: none;
+}
+.message {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  object-fit: fill;
+}
+
+button {
+  margin: 10px;
+}
+
+.game-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.human {
+  position: absolute;
+  bottom: 0;
+}
+
+.human-img {
+  height: 300px;
+}
+
+#overlay-text {
+  font-family: "Sawarabi Mincho", sans-serif;
+  font-weight: bold;
+  position: absolute;
+  top: 300px;
+  right: 50px;
+  font-size: 50px;
+  color: white;
+  background-color: rgb(5, 73, 17);
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid white;
+  display: none;
+  z-index: 10;
+}
+
+#result-container {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/clear.png);
+  background-size: cover;
+}
+
+.retry-button {
+  display: inline-block;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #3d9ecb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
