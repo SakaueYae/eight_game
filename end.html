@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>エンディング演出</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 2s ease-in-out;
+      }
+      .credits {
+        position: absolute;
+        bottom: -100%;
+        width: 100%;
+        text-align: center;
+        color: black;
+        font-size: 2em;
+      }
+      .roll {
+        animation: roll 20s linear forwards;
+      }
+      @keyframes roll {
+        0% {
+          bottom: -100%;
+        }
+        100% {
+          bottom: 100%;
+        }
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="credits">
+      <p>スタッフロール</p>
+      <p>ディレクター: 田中 太郎</p>
+      <p>プログラマー: 山田 花子</p>
+      <p>デザイナー: 鈴木 一郎</p>
+      <p>サウンド: 佐藤 二郎</p>
+      <p>スペシャルサンクス:</p>
+      <p>...</p>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // ページ読み込み後に実行する処理
+        setTimeout(function () {
+          // 2秒後に画面を明るくする
+          $(".overlay").css("opacity", 0);
+        }, 2000); // ここで2秒の遅延を設定
+
+        $(".overlay").on("transitionend", function () {
+          // 画面が完全に明るくなったらスタッフロールを開始する
+          $(".credits").addClass("roll");
+        });
+      });
+    </script>
+  </body>
+</html>
