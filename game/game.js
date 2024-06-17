@@ -131,6 +131,8 @@ $(document).ready(function () {
           if (timeLeft <= 0) {
             clearInterval(timerInterval);
             document.getElementById("main-bgm").pause();
+            document.getElementById("gameover").currentTime = 0;
+            document.getElementById("gameover").play();
             showTimeoutScreen();
           }
         }, 1000);
