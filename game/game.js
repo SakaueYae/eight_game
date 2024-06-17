@@ -156,7 +156,7 @@ $(document).ready(function () {
     function handleCorrect() {
       $("#human").hide(); // 人間を非表示にする
       $("#overlay-text")
-        .html(correctCount + "番店" + "<br>" + correctCount + "th store")
+        .html(correctCount + "番店" + "<br>" + "Store No." + correctCount)
         .show(); // オーバーレイテキストを表示
       $("#game-image").attr("src", emptyImage);
       $("#overlay-text").show();
@@ -172,7 +172,7 @@ $(document).ready(function () {
     function handleIncorrect() {
       $("#human").hide(); // 人間を非表示にする
       $("#overlay-text")
-        .html("0番店" + "<br>" + "0th store")
+        .html("0番店" + "<br>" + "Store No.0")
         .show();
       $("#game-image").attr("src", emptyImage);
       $("#overlay-text").show();
