@@ -9,7 +9,7 @@ $(document).ready(function () {
     document.getElementById("button33").play();
   }
 
-  $("#main-title-screen").one("click", function () {
+  $("#main-title-screen").click(function () {
     PlayButton47();
     $("#main-title-screen").hide();
     $("#level-selection-screen").show();
@@ -22,7 +22,18 @@ $(document).ready(function () {
     window.location.href = "../progress/8game_sample3.html";
     // ここにゲームのレベルに応じた処理を追加します。
   });
+  $(".levelToCredit").click(function () {
+    PlayButton47();
+    $("#level-selection-screen").hide();
+    $("#Credit").show();
+  });
 
+  $(".creditToTitle").click(function () {
+    PlayButton47();
+    $("#Credit").hide();
+    $("#main-title-screen").show();
+    //
+  });
   $(".Description").click(function () {
     PlayButton33();
     $("#level-selection-screen").hide();
