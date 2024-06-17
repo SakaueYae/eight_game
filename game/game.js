@@ -98,6 +98,7 @@ $(document).ready(function () {
     const emptyImage = "../images/BACK_ONLY.png"; // 一時的な空画像
     const difficulties = [4, 6, 9]; // 難易度ごとの正解回数
     let interval = null;
+
     const onLoad = function () {
       requiredCorrect = difficulties[Number(difficulty) - 1];
       $("#game-container").show();
@@ -113,7 +114,6 @@ $(document).ready(function () {
       $("#game-container").hide();
       $("#result-container").hide();
       $("#overlay-text").hide();
-      title();
     }
 
     function showResult(message) {
@@ -143,11 +143,12 @@ $(document).ready(function () {
     function handleCorrect() {
       $("#human").hide(); // 人間を非表示にする
       $("#overlay-text")
-        .html(correctCount + "番店" + "<br>" + correctCount + "th store")
+        .text(correctCount + "番店")
         .show(); // オーバーレイテキストを表示
       $("#game-image").attr("src", emptyImage);
       $("#overlay-text").show();
       setTimeout(function () {
+        position = $(window).width() - 200; // 人間の位置を右端に設定
         $("#human").css("left", `${position}px`).show(); // 人間を再表示
         showNextImage();
         interval = setInterval(move, 100);
@@ -157,9 +158,7 @@ $(document).ready(function () {
     // 不正解時の処理関数
     function handleIncorrect() {
       $("#human").hide(); // 人間を非表示にする
-      $("#overlay-text")
-        .html("0番店" + "<br>" + "0th store")
-        .show();
+      $("#overlay-text").text("0番店").show();
       $("#game-image").attr("src", emptyImage);
       $("#overlay-text").show();
       setTimeout(function () {
@@ -167,6 +166,7 @@ $(document).ready(function () {
         currentImage = originalImage;
         $("#game-image").attr("src", currentImage);
         $("#overlay-text").hide();
+        position = $(window).width() - 200; // 人間の位置を右端に設定
         $("#human").css("left", `${position}px`).show(); // 人間を再表示
         interval = setInterval(move, 100);
       }, 3000);
@@ -177,8 +177,6 @@ $(document).ready(function () {
         correctCount++;
         updateOverlayText();
         if (correctCount >= requiredCorrect) {
-          document.getElementById("main-bgm").pause();
-          document.getElementById("shining_star").play();
           showResult("おめでとう！ ゲームをクリアしました。");
         } else {
           handleCorrect();
@@ -193,8 +191,6 @@ $(document).ready(function () {
         correctCount++;
         updateOverlayText();
         if (correctCount >= requiredCorrect) {
-          document.getElementById("main-bgm").pause();
-          document.getElementById("shining_star").play();
           showResult("おめでとう！ ゲームをクリアしました。");
         } else {
           handleCorrect();
@@ -204,10 +200,13 @@ $(document).ready(function () {
       }
     };
 
-    $(".retry-button").on("click", function () {
-      document.getElementById("shining_star").pause();
-      document.getElementById("shining_star").currentTime = 0;
+    $("#retry-button").on("click", function () {
       resetGame();
+    });
+
+    $("#play-again-button").on("click", function () {
+      $("#result-container").hide();
+      $("#difficulty-selection").show();
     });
 
     // 人間の移動
