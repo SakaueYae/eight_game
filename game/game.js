@@ -123,7 +123,7 @@ $(document).ready(function () {
       // 難易度が9のときだけタイマーを表示してカウントダウンを開始
       if (difficulty === "3") {
         $("#timer").show();
-        timeLeft = 90;
+        timeLeft = 10;
         $("#time-left").text(timeLeft);
         timerInterval = setInterval(function () {
           timeLeft--;
@@ -161,6 +161,10 @@ $(document).ready(function () {
       $("#game-container").hide();
       $("#timeout-screen").show();
     }
+    $("#timeout-screen").on("click", function () {
+      PlayButton47();
+      resetGame();
+    });
 
     function getRandomImage() {
       // 70%の確率でダミー画像、30%の確率で元画像を選ぶ
