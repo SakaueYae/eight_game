@@ -110,6 +110,8 @@ $(document).ready(function () {
     const emptyImage = "../images/BACK_ONLY.png"; // 一時的な空画像
     const difficulties = [4, 6, 9]; // 難易度ごとの正解回数
     let interval = null;
+    let timerInterval = null;
+    let timeLeft = 90; // 3分 = 180秒
 
     const onLoad = function () {
       requiredCorrect = difficulties[Number(difficulty) - 1];
@@ -117,6 +119,22 @@ $(document).ready(function () {
       $("#original-image").hide();
       currentImage = originalImage; // 最初は元画像を表示
       $("#game-image").attr("src", currentImage).show();
+
+      // 難易度が9のときだけタイマーを表示してカウントダウンを開始
+      if (difficulty === "3") {
+        $("#timer").show();
+        timeLeft = 90;
+        $("#time-left").text(timeLeft);
+        timerInterval = setInterval(function () {
+          timeLeft--;
+          $("#time-left").text(timeLeft);
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            document.getElementById("main-bgm").pause();
+            showTimeoutScreen();
+          }
+        }, 1000);
+      }
     };
 
     onLoad();
@@ -126,6 +144,9 @@ $(document).ready(function () {
       $("#game-container").hide();
       $("#result-container").hide();
       $("#overlay-text").hide();
+      $("#timer").hide();
+      $("#timeout-screen").hide();
+      clearInterval(timerInterval);
       title();
     }
 
@@ -133,6 +154,12 @@ $(document).ready(function () {
       $("#result-message").html(message).addClass("congrats-message");
       $("#game-container").hide();
       $("#result-container").show();
+      clearInterval(timerInterval);
+    }
+
+    function showTimeoutScreen() {
+      $("#game-container").hide();
+      $("#timeout-screen").show();
     }
 
     function getRandomImage() {
@@ -291,4 +318,9 @@ $(document).ready(function () {
 
     interval = setInterval(move, 100);
   }
+
+  // タイトルに戻るボタンのクリックイベント
+  $("#return-to-title").on("click", function () {
+    resetGame();
+  });
 });
