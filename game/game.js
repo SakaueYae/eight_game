@@ -118,7 +118,7 @@ $(document).ready(function () {
     }
 
     function showResult(message) {
-      $("#result-message").text(message);
+      $("#result-message").html(message).addClass("congrats-message");
       $("#game-container").hide();
       $("#result-container").show();
     }
