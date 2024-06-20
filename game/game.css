@@ -1,4 +1,6 @@
+/*フォント素材*/
 @import url("https://fonts.googleapis.com/css?family=Sawarabi+Mincho");
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 
 body {
   font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
@@ -69,7 +71,7 @@ body {
   text-align: center;
   position: absolute;
   left: 450px;
-  bottom: 20px;
+  bottom: 15px;
   cursor: pointer;
   font-size: 30px;
   color: #fff;
@@ -385,7 +387,7 @@ button {
   transition: background-color 0.3s;
 }
 
-.congrats-message {
+/*#result-message {
   font-size: 2em;
   color: #fff;
   text-align: center;
@@ -397,6 +399,83 @@ button {
   animation: glow 1s infinite alternate, bounce 2s infinite;
   width: 80%;
   margin: 20px auto;
+}*/
+
+#result-message {
+  font-family: "Itim", cursive;
+  font-size: 4em;
+  position: relative;
+  margin: 30px;
+  text-align: center;
+}
+
+#result-message:before,
+#result-message:after {
+  position: absolute;
+  z-index: 0;
+  bottom: -10px;
+  display: block;
+  content: "";
+  border: 1em solid #d90606;
+}
+
+#result-message:before {
+  left: -30px;
+  border-left-width: 15px;
+  border-left-color: transparent;
+}
+
+#result-message:after {
+  right: -30px;
+  border-right-width: 15px;
+  border-right-color: transparent;
+}
+
+#result-message span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 1rem 2rem;
+  color: #fff;
+  background: #fa4141;
+}
+
+#result-message span:before,
+#result-message span:after {
+  position: absolute;
+  bottom: -10px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  content: "";
+  border-style: solid;
+  border-color: #b70505 transparent transparent transparent;
+}
+
+#result-message span:before {
+  left: 0;
+  border-width: 10px 0 0 10px;
+}
+
+#result-message span:after {
+  right: 0;
+  border-width: 10px 10px 0 0;
+}
+
+.message {
+  font-family: "Sawarabi Mincho", sans-serif;
+  font-weight: bold;
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  background-color: rgb(5, 73, 17);
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid white;
+  z-index: 9999;
 }
 
 @keyframes glow {
@@ -458,4 +537,70 @@ button {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/*以下スタッフロール*/
+#staffroll-container {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.overlay-screen {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 9999;
+  transition: opacity 2s ease-in-out;
+}
+
+.staffroll {
+  position: absolute;
+  bottom: -290%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+#staffroll-to-result {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  color: white;
+  font-size: 1em;
+}
+.roll {
+  animation: roll 60s linear forwards;
+}
+@keyframes roll {
+  0% {
+    bottom: -290%;
+  }
+  100% {
+    bottom: 100%;
+  }
+}
+
+.fadeout {
+  animation: fadeout 2s forwards;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

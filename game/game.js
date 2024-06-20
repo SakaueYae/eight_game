@@ -16,6 +16,7 @@ $(document).ready(function () {
   const volume2 = document.getElementById("title-bgm").volume; // 現在のボリュームを取得
   document.getElementById("title-bgm").volume = volume2 - 0.5;
   $("#result-container").hide();
+  $("#staffroll-container").hide();
 
   function title() {
     $("#main-title-screen").show();
@@ -112,6 +113,8 @@ $(document).ready(function () {
     let interval = null;
     let timerInterval = null;
     let timeLeft = 120; // 3分 = 180秒
+    let starttime = Date.now(); //経過時間を図るためにスタート時の時間を取得
+    let endtime = 0;
 
     const onLoad = function () {
       requiredCorrect = difficulties[Number(difficulty) - 1];
@@ -153,11 +156,62 @@ $(document).ready(function () {
       title();
     }
 
-    function showResult(message) {
-      $("#result-message").html(message).addClass("congrats-message");
-      $("#game-container").hide();
+    function showresult() {
+      let d = new Date(endtime - starttime);
+      const getMin = d.getMinutes();
+      const getSec = d.getSeconds();
+      $("#cleartime").text("Time: " + getMin + ":" + getSec);
       $("#result-container").show();
-      clearInterval(timerInterval);
+    }
+
+    function staffroll() {
+      $("#staffroll-container").show();
+      setTimeout(function () {
+        // 2秒後に画面を明るくする
+        $(".overlay-screen").css("opacity", 0);
+      }, 5); // ここで2秒の遅延を設定
+
+      $(".overlay-screen").on("transitionend", function () {
+        // 画面が完全に明るくなったらスタッフロールを開始する
+        $(".staffroll").addClass("roll");
+      });
+
+      $(".staffroll").on("animationend", function () {
+        // スタッフロールが終わったらフェードアウトしながら次の画面に遷移する
+        transitionToNextPage();
+      });
+
+      $("#staffroll-container").on("click", function () {
+        // 画面クリックで次の画面にスキップ
+        transitionToNextPage();
+      });
+
+      function transitionToNextPage() {
+        setTimeout(function () {
+          // 2秒後に画面を明るくする
+          $(".overlay-screen").css("opacity", 1);
+        }, 5);
+
+        $(".overlay-screen").on("transitionend", function () {
+          // フェードアウトが終わったら次のページに遷移する
+          $("#staffroll-container").hide();
+          showresult(); // 次の画面のURLに置き換えてください
+        });
+      }
+    }
+
+    function clearscreen() {
+      endtime = Date.now();
+      $("#timer").hide();
+      //$("#result-message").html(message).addClass("congrats-message");
+      $("#game-container").hide();
+      if (difficulty === "3") {
+        clearInterval(timerInterval);
+        staffroll();
+      } else {
+        clearInterval(timerInterval);
+        showresult();
+      }
     }
 
     function showTimeoutScreen() {
@@ -229,7 +283,7 @@ $(document).ready(function () {
         if (correctCount >= requiredCorrect) {
           document.getElementById("main-bgm").pause();
           document.getElementById("shining_star").play();
-          showResult("おめでとう！ ゲームをクリアしました。");
+          clearscreen();
         } else {
           handleCorrect();
         }
@@ -245,7 +299,7 @@ $(document).ready(function () {
         if (correctCount >= requiredCorrect) {
           document.getElementById("main-bgm").pause();
           document.getElementById("shining_star").play();
-          showResult("おめでとう！ ゲームをクリアしました。");
+          clearscreen();
         } else {
           handleCorrect();
         }
