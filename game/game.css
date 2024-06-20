@@ -549,6 +549,8 @@ button {
   justify-content: center;
   align-items: center;
   background-color: black;
+  position: relative;
+  overflow: hidden;
 }
 
 .overlay-screen {

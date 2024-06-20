@@ -160,7 +160,7 @@ $(document).ready(function () {
       let d = new Date(endtime - starttime);
       const getMin = d.getMinutes();
       const getSec = d.getSeconds();
-      $("#cleartime").text("Time: " + getMin + ":" + getSec);
+      $("#cleartime").text("Time: " + getMin + ":" + ("00" + getSec).slice(-2));
       $("#result-container").show();
     }
 
