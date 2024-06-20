@@ -42,6 +42,17 @@
           bottom: 100%;
         }
       }
+      .fadeout {
+        animation: fadeout 2s forwards;
+      }
+      @keyframes fadeout {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
@@ -56,6 +67,7 @@
       <p>スペシャルサンクス:</p>
       <p>...</p>
     </div>
+    <div id="next">次のページ</div>
 
     <script>
       $(document).ready(function () {
@@ -63,12 +75,31 @@
         setTimeout(function () {
           // 2秒後に画面を明るくする
           $(".overlay").css("opacity", 0);
-        }, 2000); // ここで2秒の遅延を設定
+        }, 5); // ここで2秒の遅延を設定
 
         $(".overlay").on("transitionend", function () {
           // 画面が完全に明るくなったらスタッフロールを開始する
           $(".credits").addClass("roll");
         });
+
+        $(".credits").on("animationend", function () {
+          // スタッフロールが終わったらフェードアウトしながら次の画面に遷移する
+          transitionToNextPage();
+        });
+
+        $("body").on("click", function () {
+          // 画面クリックで次の画面にスキップ
+          transitionToNextPage();
+        });
+
+        function transitionToNextPage() {
+          $("body").addClass("fadeout");
+
+          $(".fadeout").on("animationend", function () {
+            // フェードアウトが終わったら次のページに遷移する
+            $("#next").show; // 次の画面のURLに置き換えてください
+          });
+        }
       });
     </script>
   </body>
